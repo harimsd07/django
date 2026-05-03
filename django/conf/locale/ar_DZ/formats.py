@@ -1,3 +1,4 @@
+from __future__ import division
 # This file is distributed under the same license as the Django package.
 #
 # The *_FORMAT strings use the Django date format syntax,
