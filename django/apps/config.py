@@ -34,7 +34,7 @@ class AppConfig:
             self.label = app_name.rpartition(".")[2]
         if not self.label.isidentifier():
             raise ImproperlyConfigured(
-                "The app label '%s' is not a valid Python identifier." % self.label
+                f"The app label '{self}' is not a valid Python identifier.".label
             )
 
         # Human-readable name for the application e.g. "Admin".
@@ -195,7 +195,7 @@ class AppConfig:
         # Check for obvious errors. (This check prevents duck typing, but
         # it could be removed if it became a problem in practice.)
         if not issubclass(app_config_class, AppConfig):
-            raise ImproperlyConfigured("'%s' isn't a subclass of AppConfig." % entry)
+            raise ImproperlyConfigured(f"'{entry}' isn't a subclass of AppConfig.")
 
         # Obtain app name here rather than in AppClass.__init__ to keep
         # all error checking for entries in INSTALLED_APPS in one place.
@@ -203,7 +203,7 @@ class AppConfig:
             try:
                 app_name = app_config_class.name
             except AttributeError:
-                raise ImproperlyConfigured("'%s' must supply a name attribute." % entry)
+                raise ImproperlyConfigured(f"'{entry}' must supply a name attribute.")
 
         # Ensure app_name points to a valid module.
         try:
